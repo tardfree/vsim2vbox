@@ -10,7 +10,7 @@ IDE11="vsim-NetAppDOT-simulate-disk4.vmdk"
 if [ -z "$(which vboxmanage)" ];then echo "vboxmanage not found";exit;fi
 
 # Extract the OVA archive
-tar -xzvf "$name".ova
+tar -xvf "$name".ova
 
 #Make a new VM from scratch
 vboxmanage createvm --name "$name" --ostype "FreeBSD_64" --register
