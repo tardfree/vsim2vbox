@@ -1,16 +1,18 @@
 #!/bin/bash
 name="vsim-netapp-DOT9.7-cm_nodar"
 memory=6192
-IDE00="vsim-NetAppDOT-simulate-disk1.vmdk"
-IDE01="vsim-NetAppDOT-simulate-disk2.vmdk"
-IDE10="vsim-NetAppDOT-simulate-disk3.vmdk"
-IDE11="vsim-NetAppDOT-simulate-disk4.vmdk"
 
 # Need to make sure virtualbox is installed
 if [ -z "$(which vboxmanage)" ];then echo "vboxmanage not found";exit;fi
 
 # Extract the OVA archive
 tar -xvf "$name".ova
+
+# Find the virtual disks (using globbing)
+IDE00=$(echo vsim-*DOT*-disk1.vmdk )
+IDE01=$(echo vsim-*DOT*-disk2.vmdk )
+IDE10=$(echo vsim-*DOT*-disk3.vmdk )
+IDE11=$(echo vsim-*DOT*-disk4.vmdk )
 
 # Make a new VM from scratch
 vboxmanage createvm --name "$name" --ostype "FreeBSD_64" --register
