@@ -6,13 +6,13 @@ IDE01="vsim-NetAppDOT-simulate-disk2.vmdk"
 IDE10="vsim-NetAppDOT-simulate-disk3.vmdk"
 IDE11="vsim-NetAppDOT-simulate-disk4.vmdk"
 
-#need to make sure virtualbox is installed
+# Need to make sure virtualbox is installed
 if [ -z "$(which vboxmanage)" ];then echo "vboxmanage not found";exit;fi
 
 # Extract the OVA archive
 tar -xvf "$name".ova
 
-#Make a new VM from scratch
+# Make a new VM from scratch
 vboxmanage createvm --name "$name" --ostype "FreeBSD_64" --register
 vboxmanage modifyvm "$name" --ioapic on 
 vboxmanage modifyvm "$name" --vram 16
@@ -45,11 +45,11 @@ vboxmanage storageattach "$name" --storagectl IDE --port 1 --device 1 --type hdd
 # Export the finished VM to a new OVA file
 vboxmanage export --ovf20 "$name" -o "$name"-vbox.ova
 
-# cleanup
+# Cleanup
 vboxmanage unregistervm "$name" --delete
 
-# write sha256 checksum of output file
+# Write sha256 checksum of output file
 sha256sum "$name"-vbox.ova > "$name"-vbox.ova.sha256
 
-# remove other files from the OVA from current directory
+# Remove other files from the OVA from current directory
 rm vsim-NetAppDOT-simulate.mf vsim-NetAppDOT-simulate.ovf
