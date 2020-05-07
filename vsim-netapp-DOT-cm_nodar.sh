@@ -1,5 +1,6 @@
 #!/bin/bash
 name="vsim-netapp-DOT9.7-cm_nodar"
+#name="vsim-netapp-DOT9.6-cm_nodar"
 memory=6192
 
 # Need to make sure virtualbox is installed
@@ -54,4 +55,4 @@ vboxmanage unregistervm "$name" --delete
 sha256sum "$name"-vbox.ova > "$name"-vbox.ova.sha256
 
 # Remove other files from the OVA from current directory
-rm vsim-NetAppDOT-simulate.mf vsim-NetAppDOT-simulate.ovf
+rm -f vsim-NetAppDOT-simulate.mf vsim-NetAppDOT-simulate.ovf vsim-netapp-DOT9.6-cm.ovf vsim-netapp-DOT9.6-cm.mf
