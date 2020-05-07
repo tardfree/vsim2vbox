@@ -43,7 +43,7 @@ vboxmanage storageattach "$name" --storagectl IDE --port 1 --device 0 --type hdd
 vboxmanage storageattach "$name" --storagectl IDE --port 1 --device 1 --type hdd --medium "$IDE11"
 
 # Export the finished VM to a new OVA file
-vboxmanage export "$name" -o "$name"-vbox.ova
+vboxmanage export --ovf20 "$name" -o "$name"-vbox.ova
 
 # cleanup
 vboxmanage unregistervm "$name" --delete
