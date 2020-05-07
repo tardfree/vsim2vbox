@@ -48,3 +48,8 @@ vboxmanage export --ovf20 "$name" -o "$name"-vbox.ova
 # cleanup
 vboxmanage unregistervm "$name" --delete
 
+# write sha256 checksum of output file
+sha256sum "$name"-vbox.ova > "$name"-vbox.ova.sha256
+
+# remove other files from the OVA from current directory
+rm vsim-NetAppDOT-simulate.mf vsim-NetAppDOT-simulate.ovf
